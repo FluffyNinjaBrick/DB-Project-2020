@@ -4,10 +4,10 @@
         "http://hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory>
-<!--        <property name="hibernate.connection.url">jdbc:mysql://...?serverTimezone=Europe/Warsaw</property>-->
-<!--        <property name="hibernate.connection.username">...</property>-->
-<!--        <property name="hibernate.connection.password">...</property>-->
-<!--        <property name="hibernate.show_sql">true</property>-->
+        <property name="hibernate.connection.url">jdbc:mysql://mysql.agh.edu.pl:3306/czajowsk</property>
+        <property name="hibernate.connection.username">czajowsk</property>
+        <property name="hibernate.connection.password">Cb7cHvKtZiz1AYRc</property>
+        <property name="hibernate.show_sql">true</property>
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQL57Dialect</property>
         <property name="hibernate.hbm2ddl.auto">update</property>
