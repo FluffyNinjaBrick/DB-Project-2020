@@ -3,7 +3,7 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**
 !**/src/test/**
-hibernate.cfg.xml
+application.properties
 
 ### STS ###
 .apt_generated
