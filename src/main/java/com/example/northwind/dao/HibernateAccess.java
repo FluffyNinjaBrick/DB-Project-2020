@@ -3,6 +3,7 @@ package com.example.northwind.dao;
 import com.example.northwind.model.Category;
 import com.example.northwind.model.Product;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.mysql.cj.Session;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -18,6 +19,7 @@ public class HibernateAccess implements NorthwindDao {
         System.out.println("Everything hooked up correctly");
         // TODO - this is where the actual DB logic is gonna go,
         //  for now I'm just doing the API so I'm leaving this blank
+
         return 0;
     }
 
@@ -32,6 +34,8 @@ public class HibernateAccess implements NorthwindDao {
 
     @Override
     public int addCategory(Category category) {
+
+
         return 0;
     }
 
