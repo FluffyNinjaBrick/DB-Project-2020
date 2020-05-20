@@ -1,6 +1,8 @@
 package com.example.northwind.dao;
 
+import com.example.northwind.model.Category;
 import com.example.northwind.model.Product;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -23,7 +25,18 @@ public class HibernateAccess implements NorthwindDao {
     public List<Product> getAllProducts() {
         //TODO - as above
         List<Product> list = new ArrayList<>();
-        list.add(new Product("Cheese"));
+        Category category = new Category("meat", "not for vegans");
+        list.add(new Product("Cheese",category, 15, 2.5,5, 20));
         return list;
+    }
+
+    @Override
+    public int addCategory(Category category) {
+        return 0;
+    }
+
+    @Override
+    public List<Category> getAllCategories() {
+        return null;
     }
 }

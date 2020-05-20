@@ -1,6 +1,7 @@
 package com.example.northwind.service;
 
 import com.example.northwind.dao.NorthwindDao;
+import com.example.northwind.model.Category;
 import com.example.northwind.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -29,5 +30,9 @@ public class NorthwindDataService {
     public List<Product> getAllProducts() {
         return dao.getAllProducts();
     }
+
+    public int addCategory(Category category){return dao.addCategory(category);}
+
+    public List<Category> getAllCategories(){return dao.getAllCategories();}
 
 }
