@@ -1,6 +1,6 @@
 package com.example.northwind.api;
 
-import com.example.northwind.model.Product;
+import com.example.northwind.model.*;
 import com.example.northwind.service.NorthwindDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,5 +31,15 @@ public class RestController {
     @GetMapping("/product")
     public List<Product> getAllProducts() {
         return dataService.getAllProducts();
+    }
+
+    @PostMapping("/category")
+    public void addCategory(@RequestBody Category c){
+        dataService.addCategory(c);
+    }
+
+    @GetMapping("/category")
+    public List<Category> getAllCategories(){
+        return dataService.getAllCategories();
     }
 }
