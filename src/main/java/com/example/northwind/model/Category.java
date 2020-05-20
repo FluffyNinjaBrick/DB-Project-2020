@@ -56,11 +56,15 @@ public class Category implements Serializable {
         Description = description;
     }
 
-    public List<Product> getProducts() {
+    public List<Product> getProductsList() {
         return new ArrayList<Product>(Products);
     }
 
-    public void setProducts(List<Product> products) {
+    public void setProductsList(List<Product> products) {
         Products = new HashSet<Product>(products);
+    }
+
+    public void addProduct(Product product){
+        Products.add(product);
     }
 }

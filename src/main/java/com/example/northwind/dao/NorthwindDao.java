@@ -17,7 +17,8 @@ public interface NorthwindDao {
     int addCustomer(Customer customer);
     List<Customer> getAllCustomers();
 
-
+    int addShipper(Shipper shipper);
+    List<Shipper> getAllShippers();
 
 
 }

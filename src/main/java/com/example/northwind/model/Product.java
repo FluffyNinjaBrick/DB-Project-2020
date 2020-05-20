@@ -5,7 +5,9 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -40,8 +42,6 @@ public class Product implements Serializable {
         this.UnitsOnOrder = unitsOnOrder;
         this.details = new HashSet<>();
     }
-
-
 
     public int getId() {
         return id;
@@ -97,5 +97,17 @@ public class Product implements Serializable {
 
     public void setProductCategory(Category productCategory) {
         ProductCategory = productCategory;
+    }
+
+    public void addOrderDetail(OrderDetails orderDetail){
+        this.details.add(orderDetail);
+    }
+
+    public List<OrderDetails> getAllOrderDetails(){
+        return new ArrayList<>(details);
+    }
+
+    public void setOrderDetails(List<OrderDetails> orderDetailsList){
+        this.details = new HashSet<>(orderDetailsList);
     }
 }

@@ -1,7 +1,9 @@
 package com.example.northwind.dao;
 
 import com.example.northwind.model.Category;
+import com.example.northwind.model.Customer;
 import com.example.northwind.model.Product;
+import com.example.northwind.model.Shipper;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mysql.cj.Session;
 import org.springframework.stereotype.Repository;
@@ -41,6 +43,26 @@ public class HibernateAccess implements NorthwindDao {
 
     @Override
     public List<Category> getAllCategories() {
+        return null;
+    }
+
+    @Override
+    public int addCustomer(Customer customer) {
+        return 0;
+    }
+
+    @Override
+    public List<Customer> getAllCustomers() {
+        return null;
+    }
+
+    @Override
+    public int addShipper(Shipper shipper) {
+        return 0;
+    }
+
+    @Override
+    public List<Shipper> getAllShippers() {
         return null;
     }
 }

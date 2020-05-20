@@ -6,7 +6,9 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 
@@ -83,5 +85,16 @@ public class Order implements Serializable {
         Freight = freight;
     }
 
+    public List<OrderDetails> getOrderDetails(){
+        return new ArrayList<>(this.details);
+    }
+
+    public void setOrderDetails(List<OrderDetails> orderDetails){
+        this.details = new HashSet<>(orderDetails);
+    }
+
+    public void addOrderDetail(OrderDetails orderDetail){
+        this.details.add(orderDetail);
+    }
 
 }
