@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "PRODUCTS")
@@ -23,7 +25,11 @@ public class Product implements Serializable {
     @JoinColumn(name = "CATEGORY_ID", referencedColumnName ="id", nullable = false)
     private Category ProductCategory;
 
-    public Product(){};
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    private Set<OrderDetails> details;
+
+    public Product(){ this.details = new HashSet<>();};
     public Product(@JsonProperty("name") String name,@JsonProperty("category") Category category, @JsonProperty("quantityPerUnit") int quantityPerUnit,
                    @JsonProperty("unitPrice") double unitPrice, @JsonProperty("unitInStock") int unitInStock,@JsonProperty("unitsOnOrder") int unitsOnOrder) {
         this.name = name;
@@ -32,6 +38,7 @@ public class Product implements Serializable {
         this.UnitPrice = unitPrice;
         this.UnitInStock = unitInStock;
         this.UnitsOnOrder = unitsOnOrder;
+        this.details = new HashSet<>();
     }
 
 
@@ -72,4 +79,23 @@ public class Product implements Serializable {
         this.ProductCategory = category;
     }
 
+    public void setQuantityPerUnit(int quantityPerUnit) {
+        QuantityPerUnit = quantityPerUnit;
+    }
+
+    public void setUnitPrice(double unitPrice) {
+        UnitPrice = unitPrice;
+    }
+
+    public void setUnitInStock(int unitInStock) {
+        UnitInStock = unitInStock;
+    }
+
+    public void setUnitsOnOrder(int unitsOnOrder) {
+        UnitsOnOrder = unitsOnOrder;
+    }
+
+    public void setProductCategory(Category productCategory) {
+        ProductCategory = productCategory;
+    }
 }
