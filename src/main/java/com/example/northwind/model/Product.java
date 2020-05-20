@@ -4,34 +4,37 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-public class Product {
+@Table(name = "PRODUCTS")
+public class Product implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
-    @ManyToOne
-    @JoinColumn(name = "CategoryID")
-    private Category category;
+
     private int QuantityPerUnit;
     private double UnitPrice;
     private int UnitInStock;
     private int UnitsOnOrder;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "CATEGORY_ID", referencedColumnName ="id", nullable = false)
+    private Category ProductCategory;
 
-
+    public Product(){};
     public Product(@JsonProperty("name") String name,@JsonProperty("category") Category category, @JsonProperty("quantityPerUnit") int quantityPerUnit,
                    @JsonProperty("unitPrice") double unitPrice, @JsonProperty("unitInStock") int unitInStock,@JsonProperty("unitsOnOrder") int unitsOnOrder) {
         this.name = name;
-        this.category = category;
+        this.ProductCategory = category;
         this.QuantityPerUnit = quantityPerUnit;
         this.UnitPrice = unitPrice;
         this.UnitInStock = unitInStock;
         this.UnitsOnOrder = unitsOnOrder;
     }
 
-    public Product(){};
+
 
     public int getId() {
         return id;
@@ -42,7 +45,7 @@ public class Product {
     }
 
     public Category getCategory() {
-        return category;
+        return ProductCategory;
     }
 
     public int getQuantityPerUnit() {
@@ -66,7 +69,7 @@ public class Product {
     }
 
     public void setCategory(Category category) {
-        this.category = category;
+        this.ProductCategory = category;
     }
 
 }
