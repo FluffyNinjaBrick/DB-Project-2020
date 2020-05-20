@@ -6,6 +6,8 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Entity
@@ -23,19 +25,22 @@ public class Order implements Serializable {
     @JoinColumn(name = "CUSTOMER_ID", referencedColumnName ="id", nullable = false)
     Customer customerOrder;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "SHIPPER_ID", referencedColumnName ="id", nullable = false)
+    Shipper shipperOrder;
 
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    private Set<OrderDetails> details;
 
-
-    //@Transient
-    //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-
-    public Order(){}
+    public Order(){this.details = new HashSet<>();}
 
     public Order(@JsonProperty("orderDate") String orderDate, @JsonProperty("requiredDate")String requiredDate, @JsonProperty("freight") double freight) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         this.OrderDate = LocalDateTime.parse(orderDate,formatter);
         this.RequiredDate = LocalDateTime.parse(requiredDate,formatter);
         this.Freight = freight;
+        this.details = new HashSet<>();
     }
 
     public int getId() {
@@ -78,9 +83,5 @@ public class Order implements Serializable {
         Freight = freight;
     }
 
-    //
-//    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-//    LocalDateTime dateTime = LocalDateTime.parse(str, formatter);
-//
 
 }
