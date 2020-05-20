@@ -5,7 +5,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -91,5 +93,17 @@ public class Customer implements Serializable {
 
     public void setPhone(String phone) {
         Phone = phone;
+    }
+
+    public void addOrder(Order order){
+        this.Orders.add(order);
+    }
+
+    public List<Order> getAllOrders(){
+        return new ArrayList<>(Orders);
+    }
+
+    public void setOrderList(List<Order> orderList){
+        this.Orders = new HashSet<>(orderList);
     }
 }
