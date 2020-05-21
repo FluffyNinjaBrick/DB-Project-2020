@@ -2,10 +2,13 @@ package com.example.northwind.service;
 
 import com.example.northwind.dao.NorthwindDao;
 import com.example.northwind.model.Category;
+import com.example.northwind.model.Customer;
 import com.example.northwind.model.Product;
+import com.example.northwind.model.Shipper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -23,16 +26,25 @@ public class NorthwindDataService {
     }
 
     // --- methods --- //
-    public int addProduct(Product p) {
-        return dao.addProduct(p);
-    }
-
+    @Transactional
+    public int addProduct(Product p, int category_id) { return dao.addProduct(p,category_id); }
+    @Transactional
     public List<Product> getAllProducts() {
         return dao.getAllProducts();
     }
-
+    @Transactional
     public int addCategory(Category category){return dao.addCategory(category);}
-
+    @Transactional
     public List<Category> getAllCategories(){return dao.getAllCategories();}
+    @Transactional
+    public List<Shipper> getAllShippers(){return dao.getAllShippers();}
+    @Transactional
+    public int addShipper(Shipper s){return dao.addShipper(s);}
+    @Transactional
+    public List<Customer> getAllCustomers(){return dao.getAllCustomers();}
+    @Transactional
+    public int addCustomer(Customer c){return dao.addCustomer(c);}
+
+
 
 }

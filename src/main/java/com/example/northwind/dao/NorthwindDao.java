@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface NorthwindDao {
 
-    int addProduct(Product product);
+    int addProduct(Product product, int category_id);
     List<Product> getAllProducts();
 
     int addCategory(Category category);

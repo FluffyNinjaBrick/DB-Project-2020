@@ -1,5 +1,6 @@
 package com.example.northwind.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 
@@ -12,6 +13,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "PRODUCTS")
+//@JsonIgnoreProperties(ignoreUnknown = true)
 public class Product implements Serializable {
 
     @Id
@@ -32,10 +34,9 @@ public class Product implements Serializable {
     private Set<OrderDetails> details;
 
     public Product(){ this.details = new HashSet<>();};
-    public Product(@JsonProperty("name") String name,@JsonProperty("category") Category category, @JsonProperty("quantityPerUnit") int quantityPerUnit,
+    public Product(@JsonProperty("name") String name, @JsonProperty("quantityPerUnit") int quantityPerUnit,
                    @JsonProperty("unitPrice") double unitPrice, @JsonProperty("unitInStock") int unitInStock,@JsonProperty("unitsOnOrder") int unitsOnOrder) {
         this.name = name;
-        this.ProductCategory = category;
         this.QuantityPerUnit = quantityPerUnit;
         this.UnitPrice = unitPrice;
         this.UnitInStock = unitInStock;

@@ -2,11 +2,9 @@ package com.example.northwind.api;
 
 import com.example.northwind.model.*;
 import com.example.northwind.service.NorthwindDataService;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,9 +22,9 @@ public class RestController {
     }
 
     @PostMapping("/product")
-    public void addProduct(@RequestBody Product p) {
-        dataService.addProduct(p);
-    }
+    public void addProduct(@RequestHeader(value = "product") Product p, @RequestHeader(value="category") int category_id) {
+        System.out.println("controller");
+        dataService.addProduct(p,category_id);}
 
     @GetMapping("/product")
     public List<Product> getAllProducts() {
