@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mysql.cj.Session;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,53 +17,57 @@ import java.util.List;
 @Repository("HibernateAccess") // repository here meaning a class that stored data in a DB
 public class HibernateAccess implements NorthwindDao {
 
+    @PersistenceContext
+    private EntityManager em;
+
     @Override
-    public int addProduct(Product product) {
-        System.out.println("Everything hooked up correctly");
+    public int addProduct(Product product, int category_id) {
         // TODO - this is where the actual DB logic is gonna go,
         //  for now I'm just doing the API so I'm leaving this blank
-
+        System.out.println("hello");
+        Category category = em.find(Category.class,category_id);
+        product.setCategory(category);
+        System.out.println(category);
+        //em.persist(product);
+        //em.persist(category);
         return 0;
     }
 
     @Override
     public List<Product> getAllProducts() {
-        //TODO - as above
-        List<Product> list = new ArrayList<>();
-        Category category = new Category("meat", "not for vegans");
-        list.add(new Product("Cheese",category, 15, 2.5,5, 20));
-        return list;
+        return em.createQuery("FROM Product ").getResultList();
     }
 
     @Override
     public int addCategory(Category category) {
-
-
+        em.persist(category);
         return 0;
     }
 
     @Override
     public List<Category> getAllCategories() {
-        return null;
+        return em.createQuery("FROM Category").getResultList();
     }
 
     @Override
     public int addCustomer(Customer customer) {
+        em.persist(customer);
         return 0;
     }
 
     @Override
     public List<Customer> getAllCustomers() {
-        return null;
+        return em.createQuery("FROM Customer").getResultList();
     }
 
     @Override
     public int addShipper(Shipper shipper) {
+        em.persist(shipper);
         return 0;
     }
 
     @Override
     public List<Shipper> getAllShippers() {
-        return null;
+        return em.createQuery("FROM Shipper").getResultList();
     }
 }
