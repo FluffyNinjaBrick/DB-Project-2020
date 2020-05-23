@@ -36,7 +36,11 @@ public class RestController {
         return dataService.getAllProducts();
     }
 
+    @GetMapping("/product/{product_id}")
+    public Product getProductById(@PathVariable int product_id){ return dataService.getProductById(product_id);}
 
+    @DeleteMapping("/product/{product_id}")
+    public void deleteProductById(@PathVariable int product_id){ dataService.deleteProductById(product_id);}
 
     // ==========  CATEGORY  ========== //
 
@@ -55,7 +59,8 @@ public class RestController {
         return dataService.getCategoryByID(category_id);
     }
 
-
+    @DeleteMapping("/category/{category_id}")
+    public void deleteCategoryById(@PathVariable int category_id) { dataService.deleteCategoryById(category_id);}
 
     // ==========  CUSTOMER  ========== //
 
@@ -64,6 +69,9 @@ public class RestController {
 
     @GetMapping("/customer")
     public List<Customer> getAllCustomers() { return dataService.getAllCustomers(); }
+
+    @GetMapping("/customer/{customer_id}")
+    public Customer getCustomerById(@PathVariable int customer_id){ return dataService.getCustomerById(customer_id); }
 
     // ==========  SHIPPER  ========== //
 
@@ -74,4 +82,7 @@ public class RestController {
     public List<Shipper> getAllShippers(){
         return dataService.getAllShippers();
     }
+
+    @GetMapping("/shipper/{shipper_id}")
+    public Shipper getShipperById(@PathVariable int shipper_id) { return dataService.getShipperById(shipper_id);}
 }

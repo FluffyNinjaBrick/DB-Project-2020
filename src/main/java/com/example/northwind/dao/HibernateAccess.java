@@ -37,6 +37,21 @@ public class HibernateAccess implements NorthwindDao {
     @Transactional
     public List<Product> getAllProducts() { return em.createQuery("FROM Product").getResultList(); }
 
+    @Override
+    @Transactional
+    public Product getProductById(int product_id) {
+        return em.find(Product.class,product_id);
+    }
+
+    @Override
+    @Transactional
+    public void deleteProductById(int product_id) {
+        Product prod = em.find(Product.class,product_id);
+        int category_id = prod.getCategory();
+        Category cat = em.find(Category.class,category_id);
+        cat.removeProduct(prod);
+        em.remove(prod);
+    }
 
 
     // ==========  CATEGORY  ========== //
@@ -60,6 +75,12 @@ public class HibernateAccess implements NorthwindDao {
         return em.find(Category.class, category_id);
     }
 
+    @Override
+    @Transactional
+    public void deleteCategoryById(int category_id) { //orphan removal set for products
+        Category category = em.find(Category.class, category_id);
+        em.remove(category);
+    }
 
 
     // ==========  CUSTOMER  ========== //
@@ -75,6 +96,11 @@ public class HibernateAccess implements NorthwindDao {
     @Transactional
     public List<Customer> getAllCustomers() { return em.createQuery("FROM Customer").getResultList(); }
 
+    @Override
+    @Transactional
+    public Customer getCustomerById(int customer_id) {
+        return em.find(Customer.class,customer_id);
+    }
 
 
     // ==========  SHIPPER  ========== //
@@ -90,5 +116,11 @@ public class HibernateAccess implements NorthwindDao {
     @Transactional
     public List<Shipper> getAllShippers() {
         return em.createQuery("FROM Shipper").getResultList();
+    }
+
+    @Override
+    @Transactional
+    public Shipper getShipperById(int shipper_id) {
+        return em.find(Shipper.class, shipper_id);
     }
 }

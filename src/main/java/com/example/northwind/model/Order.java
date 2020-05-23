@@ -31,8 +31,7 @@ public class Order implements Serializable {
     @JoinColumn(name = "SHIPPER_ID", referencedColumnName ="id", nullable = false)
     Shipper shipperOrder;
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL,
-            orphanRemoval = true)
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<OrderDetails> details;
 
     public Order() { this.details = new HashSet<>(); }
