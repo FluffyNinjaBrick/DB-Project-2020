@@ -22,14 +22,10 @@ public class Category implements Serializable {
     Set<Product> Products;
 
     public Category(){Products = new HashSet<Product>();}
-    public Category(@JsonProperty("name") String categoryName, @JsonProperty("description") String description){
+    public Category(@JsonProperty("name") String categoryName, @JsonProperty("desc") String description){
         this.CategoryName = categoryName;
         this.Description = description;
         Products = new HashSet<Product>();
-    }
-
-    public void addProductToList(Product product){
-        Products.add(product);
     }
 
     public int getId() {

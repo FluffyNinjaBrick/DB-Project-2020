@@ -21,15 +21,24 @@ public class RestController {
         this.dataService = dataService;
     }
 
-    @PostMapping("/product")
-    public void addProduct(@RequestHeader(value = "product") Product p, @RequestHeader(value="category") int category_id) {
-        System.out.println("controller");
-        dataService.addProduct(p,category_id);}
+
+
+    // ==========  PRODUCT  ========== //
+
+    @PostMapping("/product/{category_id}")
+    public void addProduct(@RequestBody Product p, @PathVariable int category_id) {
+        p.setCategory(dataService.getCategoryByID(category_id));
+        dataService.addProduct(p, category_id);
+    }
 
     @GetMapping("/product")
     public List<Product> getAllProducts() {
         return dataService.getAllProducts();
     }
+
+
+
+    // ==========  CATEGORY  ========== //
 
     @PostMapping("/category")
     public void addCategory(@RequestBody Category c){
@@ -39,5 +48,22 @@ public class RestController {
     @GetMapping("/category")
     public List<Category> getAllCategories(){
         return dataService.getAllCategories();
+    }
+
+    @GetMapping("/category/{category_id}")
+    public Category getCategoryByID(@PathVariable int category_id) {
+        return dataService.getCategoryByID(category_id);
+    }
+
+
+
+    // ==========  SHIPPER  ========== //
+
+    @PostMapping("/shipper")
+    public void addShipper(@RequestBody Shipper s) { dataService.addShipper(s); }
+
+    @GetMapping("/shipper")
+    public List<Shipper> getAllShippers(){
+        return dataService.getAllShippers();
     }
 }

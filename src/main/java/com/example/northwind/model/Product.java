@@ -35,7 +35,8 @@ public class Product implements Serializable {
 
     public Product(){ this.details = new HashSet<>();};
     public Product(@JsonProperty("name") String name, @JsonProperty("quantityPerUnit") int quantityPerUnit,
-                   @JsonProperty("unitPrice") double unitPrice, @JsonProperty("unitInStock") int unitInStock,@JsonProperty("unitsOnOrder") int unitsOnOrder) {
+                   @JsonProperty("unitPrice") double unitPrice, @JsonProperty("unitInStock") int unitInStock,
+                   @JsonProperty("unitsOnOrder") int unitsOnOrder) {
         this.name = name;
         this.QuantityPerUnit = quantityPerUnit;
         this.UnitPrice = unitPrice;

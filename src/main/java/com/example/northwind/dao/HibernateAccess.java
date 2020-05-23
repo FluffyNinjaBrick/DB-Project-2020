@@ -7,6 +7,7 @@ import com.example.northwind.model.Shipper;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mysql.cj.Session;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -21,52 +22,60 @@ public class HibernateAccess implements NorthwindDao {
     private EntityManager em;
 
     @Override
+    @Transactional
     public int addProduct(Product product, int category_id) {
-        // TODO - this is where the actual DB logic is gonna go,
-        //  for now I'm just doing the API so I'm leaving this blank
-        System.out.println("hello");
-        Category category = em.find(Category.class,category_id);
-        product.setCategory(category);
-        System.out.println(category);
-        //em.persist(product);
-        //em.persist(category);
+        Category category = em.find(Category.class, category_id);
+        em.persist(product);
+        category.addProduct(product);
         return 0;
     }
 
     @Override
+    @Transactional
     public List<Product> getAllProducts() {
-        return em.createQuery("FROM Product ").getResultList();
+        return new ArrayList<>();
     }
 
     @Override
+    @Transactional
     public int addCategory(Category category) {
         em.persist(category);
         return 0;
     }
 
     @Override
+    @Transactional
     public List<Category> getAllCategories() {
-        return em.createQuery("FROM Category").getResultList();
+        return new ArrayList<>();
     }
 
     @Override
+    @Transactional
+    public Category getCategoryByID(int category_id) {
+        return em.find(Category.class, category_id);
+    }
+
+    @Override
+    @Transactional
     public int addCustomer(Customer customer) {
-        em.persist(customer);
         return 0;
     }
 
     @Override
+    @Transactional
     public List<Customer> getAllCustomers() {
-        return em.createQuery("FROM Customer").getResultList();
+        return new ArrayList<>();
     }
 
     @Override
+    @Transactional
     public int addShipper(Shipper shipper) {
         em.persist(shipper);
         return 0;
     }
 
     @Override
+    @Transactional
     public List<Shipper> getAllShippers() {
         return em.createQuery("FROM Shipper").getResultList();
     }

@@ -13,6 +13,7 @@ public interface NorthwindDao {
 
     int addCategory(Category category);
     List<Category> getAllCategories();
+    Category getCategoryByID(int id);
 
     int addCustomer(Customer customer);
     List<Customer> getAllCustomers();
