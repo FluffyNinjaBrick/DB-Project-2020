@@ -57,6 +57,14 @@ public class RestController {
 
 
 
+    // ==========  CUSTOMER  ========== //
+
+    @PostMapping("/customer")
+    public void addCustomer(@RequestBody Customer c) { dataService.addCustomer(c); }
+
+    @GetMapping("/customer")
+    public List<Customer> getAllCustomers() { return dataService.getAllCustomers(); }
+
     // ==========  SHIPPER  ========== //
 
     @PostMapping("/shipper")

@@ -25,30 +25,49 @@ public class NorthwindDataService {
         this.dao = dao;
     }
 
-    // --- methods --- //
+
+    // ==========  PRODUCT  ========== //
+
     @Transactional
     public int addProduct(Product p, int category_id) { return dao.addProduct(p, category_id); }
 
     @Transactional
-    public List<Product> getAllProducts() {
-        return dao.getAllProducts();
-    }
+    public List<Product> getAllProducts() { return dao.getAllProducts(); }
+
+
+
+    // ==========  CATEGORY  ========== //
+
     @Transactional
-    public int addCategory(Category category){return dao.addCategory(category);}
+    public int addCategory(Category category) { return dao.addCategory(category); }
+
     @Transactional
-    public List<Category> getAllCategories(){return dao.getAllCategories();}
+    public List<Category> getAllCategories() { return dao.getAllCategories(); }
+
     @Transactional
     public Category getCategoryByID(int category_id) {
         return dao.getCategoryByID(category_id);
     }
+
+
+
+    // ==========  CUSTOMER  ========== //
+
     @Transactional
-    public List<Shipper> getAllShippers(){return dao.getAllShippers();}
+    public List<Customer> getAllCustomers() { return dao.getAllCustomers(); }
+
+    @Transactional
+    public int addCustomer(Customer c) { return dao.addCustomer(c); }
+
+
+
+    // ==========  SHIPPER  ========== //
+
+    @Transactional
+    public List<Shipper> getAllShippers() { return dao.getAllShippers(); }
+
     @Transactional
     public int addShipper(Shipper s) { return dao.addShipper(s); }
-    @Transactional
-    public List<Customer> getAllCustomers(){return dao.getAllCustomers();}
-    @Transactional
-    public int addCustomer(Customer c){return dao.addCustomer(c);}
 
 
 

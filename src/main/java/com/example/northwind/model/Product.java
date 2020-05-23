@@ -33,9 +33,11 @@ public class Product implements Serializable {
             orphanRemoval = true)
     private Set<OrderDetails> details;
 
-    public Product(){ this.details = new HashSet<>();};
-    public Product(@JsonProperty("name") String name, @JsonProperty("quantityPerUnit") int quantityPerUnit,
-                   @JsonProperty("unitPrice") double unitPrice, @JsonProperty("unitInStock") int unitInStock,
+    public Product() { this.details = new HashSet<>(); }
+    public Product(@JsonProperty("name") String name,
+                   @JsonProperty("quantityPerUnit") int quantityPerUnit,
+                   @JsonProperty("unitPrice") double unitPrice,
+                   @JsonProperty("unitInStock") int unitInStock,
                    @JsonProperty("unitsOnOrder") int unitsOnOrder) {
         this.name = name;
         this.QuantityPerUnit = quantityPerUnit;
@@ -53,8 +55,8 @@ public class Product implements Serializable {
         return name;
     }
 
-    public Category getCategory() {
-        return ProductCategory;
+    public int getCategory() {
+        return ProductCategory.getId();
     }
 
     public int getQuantityPerUnit() {

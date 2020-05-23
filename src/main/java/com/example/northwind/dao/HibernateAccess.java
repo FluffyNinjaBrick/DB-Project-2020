@@ -21,6 +21,9 @@ public class HibernateAccess implements NorthwindDao {
     @PersistenceContext
     private EntityManager em;
 
+
+    // ==========  PRODUCT  ========== //
+
     @Override
     @Transactional
     public int addProduct(Product product, int category_id) {
@@ -32,9 +35,11 @@ public class HibernateAccess implements NorthwindDao {
 
     @Override
     @Transactional
-    public List<Product> getAllProducts() {
-        return new ArrayList<>();
-    }
+    public List<Product> getAllProducts() { return em.createQuery("FROM Product").getResultList(); }
+
+
+
+    // ==========  CATEGORY  ========== //
 
     @Override
     @Transactional
@@ -46,7 +51,7 @@ public class HibernateAccess implements NorthwindDao {
     @Override
     @Transactional
     public List<Category> getAllCategories() {
-        return new ArrayList<>();
+        return em.createQuery("FROM Category ").getResultList();
     }
 
     @Override
@@ -55,17 +60,24 @@ public class HibernateAccess implements NorthwindDao {
         return em.find(Category.class, category_id);
     }
 
+
+
+    // ==========  CUSTOMER  ========== //
+
     @Override
     @Transactional
     public int addCustomer(Customer customer) {
+        em.persist(customer);
         return 0;
     }
 
     @Override
     @Transactional
-    public List<Customer> getAllCustomers() {
-        return new ArrayList<>();
-    }
+    public List<Customer> getAllCustomers() { return em.createQuery("FROM Customer").getResultList(); }
+
+
+
+    // ==========  SHIPPER  ========== //
 
     @Override
     @Transactional

@@ -8,16 +8,23 @@ import java.util.List;
 
 public interface NorthwindDao {
 
+    // ==========  PRODUCT  ========== //
     int addProduct(Product product, int category_id);
     List<Product> getAllProducts();
 
+
+    // ==========  CATEGORY  ========== //
     int addCategory(Category category);
     List<Category> getAllCategories();
     Category getCategoryByID(int id);
 
+
+    // ==========  CUSTOMER  ========== //
     int addCustomer(Customer customer);
     List<Customer> getAllCustomers();
 
+
+    // ==========  SHIPPER  ========== //
     int addShipper(Shipper shipper);
     List<Shipper> getAllShippers();
 

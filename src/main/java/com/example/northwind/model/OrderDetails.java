@@ -23,10 +23,13 @@ public class OrderDetails {
     private int Quantity;
     private double Discount;
 
-    public OrderDetails(){}
+    public OrderDetails() {}
 
-    public OrderDetails(@JsonProperty("order") Order order, @JsonProperty("product") Product product, @JsonProperty("unitPrice") double unitPrice,
-                        @JsonProperty("quantity") int quantity, @JsonProperty("discount") double discount) {
+    public OrderDetails(@JsonProperty("order") Order order,
+                        @JsonProperty("product") Product product,
+                        @JsonProperty("unitPrice") double unitPrice,
+                        @JsonProperty("quantity") int quantity,
+                        @JsonProperty("discount") double discount) {
         this.order = order;
         this.product = product;
         this.id = new OrderDetail_ID(order.getId(),product.getId());

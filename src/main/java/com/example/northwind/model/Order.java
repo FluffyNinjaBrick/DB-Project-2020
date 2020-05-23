@@ -35,9 +35,11 @@ public class Order implements Serializable {
             orphanRemoval = true)
     private Set<OrderDetails> details;
 
-    public Order(){this.details = new HashSet<>();}
+    public Order() { this.details = new HashSet<>(); }
 
-    public Order(@JsonProperty("orderDate") String orderDate, @JsonProperty("requiredDate")String requiredDate, @JsonProperty("freight") double freight) {
+    public Order(@JsonProperty("orderDate") String orderDate,
+                 @JsonProperty("requiredDate")String requiredDate,
+                 @JsonProperty("freight") double freight) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         this.OrderDate = LocalDateTime.parse(orderDate,formatter);
         this.RequiredDate = LocalDateTime.parse(requiredDate,formatter);

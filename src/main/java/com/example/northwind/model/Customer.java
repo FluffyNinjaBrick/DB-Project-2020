@@ -27,9 +27,12 @@ public class Customer implements Serializable {
     Set<Order> Orders;
 
     public Customer() { this.Orders = new HashSet<Order>();}
-
-    public Customer(@JsonProperty("name")String customerName, @JsonProperty("address") String address, @JsonProperty("city") String city,
-                    @JsonProperty("postalCode") String postalCode, @JsonProperty("country") String country, String phone) {
+    public Customer(@JsonProperty("name")String customerName,
+                    @JsonProperty("address") String address,
+                    @JsonProperty("city") String city,
+                    @JsonProperty("postalCode") String postalCode,
+                    @JsonProperty("country") String country,
+                    @JsonProperty("phone") String phone) {
         this.CustomerName = customerName;
         this.Address = address;
         this.City = city;
