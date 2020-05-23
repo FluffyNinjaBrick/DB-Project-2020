@@ -29,8 +29,7 @@ public class Product implements Serializable {
     @JoinColumn(name = "CATEGORY_ID", referencedColumnName ="id", nullable = false)
     private Category ProductCategory;
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL,
-            orphanRemoval = true)
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     private Set<OrderDetails> details;
 
     public Product() { this.details = new HashSet<>(); }

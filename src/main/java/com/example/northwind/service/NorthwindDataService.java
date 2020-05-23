@@ -34,6 +34,11 @@ public class NorthwindDataService {
     @Transactional
     public List<Product> getAllProducts() { return dao.getAllProducts(); }
 
+    @Transactional
+    public Product getProductById(int product_id) { return dao.getProductById(product_id); }
+
+    @Transactional
+    public void deleteProductById(int product_id) { dao.deleteProductById(product_id); }
 
 
     // ==========  CATEGORY  ========== //
@@ -49,6 +54,8 @@ public class NorthwindDataService {
         return dao.getCategoryByID(category_id);
     }
 
+    @Transactional
+    public void deleteCategoryById(int category_id) { dao.deleteCategoryById(category_id);}
 
 
     // ==========  CUSTOMER  ========== //
@@ -58,6 +65,9 @@ public class NorthwindDataService {
 
     @Transactional
     public int addCustomer(Customer c) { return dao.addCustomer(c); }
+
+    @Transactional
+    public Customer getCustomerById(int customer_id) { return dao.getCustomerById(customer_id); }
 
 
 
@@ -69,6 +79,7 @@ public class NorthwindDataService {
     @Transactional
     public int addShipper(Shipper s) { return dao.addShipper(s); }
 
-
+    @Transactional
+    public Shipper getShipperById(int shipper_id) { return dao.getShipperById(shipper_id); }
 
 }

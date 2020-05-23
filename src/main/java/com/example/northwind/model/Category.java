@@ -18,7 +18,7 @@ public class Category implements Serializable {
     private int id;
     private String CategoryName;
     private String Description;
-    @OneToMany(mappedBy = "ProductCategory",cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "ProductCategory",cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, orphanRemoval=true)
     Set<Product> Products;
 
     public Category(){Products = new HashSet<Product>();}
@@ -63,4 +63,6 @@ public class Category implements Serializable {
     public void addProduct(Product product){
         Products.add(product);
     }
+
+    public void removeProduct(Product product) {Products.remove(product);}
 }
