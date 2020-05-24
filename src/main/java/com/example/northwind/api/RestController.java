@@ -109,6 +109,8 @@ public class RestController {
             curr_details.setOrder(o);
             curr_details.setId(new OrderDetail_ID(o.getId(), curr_product.getId()));
         }
+
+        // persist all the order details
         for(OrderDetails d: details) dataService.addOrderDetails(d);
     }
 }
