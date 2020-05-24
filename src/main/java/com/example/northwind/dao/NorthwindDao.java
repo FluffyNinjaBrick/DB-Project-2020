@@ -4,6 +4,7 @@ package com.example.northwind.dao;
 
 import com.example.northwind.model.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public interface NorthwindDao {
@@ -32,5 +33,9 @@ public interface NorthwindDao {
     List<Shipper> getAllShippers();
     Shipper getShipperById(int id);
 
+
+    // ==========  ORDER  ========== //
+    int addOrder(Order o);
+    int addOrderDetails(OrderDetails d);
 
 }

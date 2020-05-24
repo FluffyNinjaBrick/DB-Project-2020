@@ -57,4 +57,12 @@ public class Shipper implements Serializable {
     public void setOrderList(List<Order> orderList){
         this.Orders = new HashSet<>(orderList);
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }

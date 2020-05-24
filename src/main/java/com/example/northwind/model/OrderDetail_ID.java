@@ -19,4 +19,7 @@ public class OrderDetail_ID implements Serializable {
         this.orderId = orderId;
         this.productID = productID;
     }
+
+    @Override
+    public String toString() { return orderId + " " + productID; }
 }

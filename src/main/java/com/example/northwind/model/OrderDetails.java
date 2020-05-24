@@ -32,30 +32,30 @@ public class OrderDetails {
                         @JsonProperty("discount") double discount) {
         this.order = order;
         this.product = product;
-        this.id = new OrderDetail_ID(order.getId(),product.getId());
+        this.id = new OrderDetail_ID(0,0);
         this.UnitPrice = unitPrice;
         this.Quantity = quantity;
         this.Discount = discount;
     }
 
-    public OrderDetail_ID getId() {
-        return id;
+    public String getId() {
+        return id.toString();
     }
 
     public void setId(OrderDetail_ID id) {
         this.id = id;
     }
 
-    public Order getOrder() {
-        return order;
+    public int getOrder() {
+        return order.getId();
     }
 
     public void setOrder(Order order) {
         this.order = order;
     }
 
-    public Product getProduct() {
-        return product;
+    public int getProduct() {
+        return product.getId();
     }
 
     public void setProduct(Product product) {

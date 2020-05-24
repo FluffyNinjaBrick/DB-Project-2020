@@ -1,15 +1,13 @@
 package com.example.northwind.service;
 
 import com.example.northwind.dao.NorthwindDao;
-import com.example.northwind.model.Category;
-import com.example.northwind.model.Customer;
-import com.example.northwind.model.Product;
-import com.example.northwind.model.Shipper;
+import com.example.northwind.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 // this is an intermediary between the DAO and the rest controller. We probably won't use it much since we only have
@@ -81,5 +79,12 @@ public class NorthwindDataService {
 
     @Transactional
     public Shipper getShipperById(int shipper_id) { return dao.getShipperById(shipper_id); }
+
+
+
+    // ==========  ORDER  ========== //
+
+    public int addOrder(Order o) { return dao.addOrder(o); }
+    public int addOrderDetails(OrderDetails d) { return dao.addOrderDetails(d); }
 
 }

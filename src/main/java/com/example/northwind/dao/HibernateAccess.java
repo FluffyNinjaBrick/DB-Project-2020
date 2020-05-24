@@ -1,15 +1,13 @@
 package com.example.northwind.dao;
 
-import com.example.northwind.model.Category;
-import com.example.northwind.model.Customer;
-import com.example.northwind.model.Product;
-import com.example.northwind.model.Shipper;
+import com.example.northwind.model.*;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mysql.cj.Session;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -122,5 +120,23 @@ public class HibernateAccess implements NorthwindDao {
     @Transactional
     public Shipper getShipperById(int shipper_id) {
         return em.find(Shipper.class, shipper_id);
+    }
+
+
+
+    // ==========  ORDER  ========== //
+
+    @Override
+    @Transactional
+    public int addOrder(Order o) {
+        em.persist(o);
+        return 0;
+    }
+
+    @Override
+    @Transactional
+    public int addOrderDetails(OrderDetails d) {
+        em.persist(d);
+        return 0;
     }
 }

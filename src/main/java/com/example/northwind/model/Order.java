@@ -98,4 +98,12 @@ public class Order implements Serializable {
         this.details.add(orderDetail);
     }
 
+    public void setCustomer(Customer customer) { this.customerOrder = customer; }
+
+    public int getCustomer() { return this.customerOrder.getCustomerID(); }
+
+    public void setShipper(Shipper shipper) { this.shipperOrder = shipper; }
+
+    public int getShipper() { return this.shipperOrder.getId(); }
+
 }
