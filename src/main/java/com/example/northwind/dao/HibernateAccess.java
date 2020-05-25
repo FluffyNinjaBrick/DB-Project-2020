@@ -133,10 +133,39 @@ public class HibernateAccess implements NorthwindDao {
         return 0;
     }
 
+
+
+    @Override
+    @Transactional
+    public List<Order> getAllOrders() {
+        return em.createQuery("FROM Order").getResultList();
+    }
+
+    @Override
+    @Transactional
+    public Order getOrder(int order_id){
+        return em.find(Order.class, order_id);
+    }
+
+    // ======  ORDER DETAILS  ====== //
+    @Override
+    @Transactional
+    public List<OrderDetails> getAllOrderDetails() {
+        return em.createQuery("FROM OrderDetails").getResultList();
+    }
+
+    @Override
+    @Transactional
+    public List<OrderDetails> getOrderDetailsByOrderId(int order_id) {
+        return em.createQuery("from OrderDetails as OD where OD.order.id='"+order_id+"'",OrderDetails.class).getResultList();
+    }
+
     @Override
     @Transactional
     public int addOrderDetails(OrderDetails d) {
         em.persist(d);
         return 0;
     }
+
+
 }
