@@ -3,6 +3,7 @@ package com.example.northwind.api;
 import com.example.northwind.model.*;
 import com.example.northwind.service.NorthwindDataService;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonValue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -113,4 +114,33 @@ public class RestController {
         // persist all the order details
         for(OrderDetails d: details) dataService.addOrderDetails(d);
     }
+
+    @GetMapping("/order")
+    public List<Order> getAllOrders(){ return dataService.getAllOrders();}
+
+    @GetMapping("/order/{order_id}")
+    public Order getOrder(@PathVariable int order_id) {
+        return dataService.getOrder(order_id);
+    }
+
+    // ==========  ORDER DETAILS  ========== //
+
+    @GetMapping("/orderDetails")
+    public List<OrderDetails> getAllOrderDetails(){ return dataService.getAllOrderDetails(); }
+
+    @GetMapping("/orderDetails/{order_id}")
+    public List<OrderDetails> getOrderDetailsByOrderId(@PathVariable int order_id){ return dataService.getOrderDetailsByOrderId(order_id);}
+
+    @PostMapping("/orderDetails/{order_id}/{product_id}")
+    public void addOrderDetailToOrder(@PathVariable int order_id,@PathVariable int product_id, @RequestBody OrderDetails orderDetails){
+        Product p = dataService.getProductById(product_id);
+        Order o = dataService.getOrder(order_id);
+        orderDetails.setOrder(o);
+        orderDetails.setProduct(p);
+        orderDetails.setUnitPrice(p.getUnitPrice());
+        orderDetails.setId(new OrderDetail_ID(o.getId(), p.getId()));
+        dataService.addOrderDetails(orderDetails);
+    }
+
+
 }

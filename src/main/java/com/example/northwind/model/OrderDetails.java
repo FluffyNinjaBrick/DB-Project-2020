@@ -38,6 +38,15 @@ public class OrderDetails {
         this.Discount = discount;
     }
 
+    public OrderDetails(@JsonProperty("unitPrice") double unitPrice,
+                        @JsonProperty("quantity") int quantity,
+                        @JsonProperty("discount") double discount) {
+        this.id = new OrderDetail_ID(0,0);
+        this.UnitPrice = unitPrice;
+        this.Quantity = quantity;
+        this.Discount = discount;
+    }
+
     public String getId() {
         return id.toString();
     }

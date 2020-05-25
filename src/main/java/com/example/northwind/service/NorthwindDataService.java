@@ -86,5 +86,10 @@ public class NorthwindDataService {
 
     public int addOrder(Order o) { return dao.addOrder(o); }
     public int addOrderDetails(OrderDetails d) { return dao.addOrderDetails(d); }
+    public List<Order> getAllOrders(){ return dao.getAllOrders();}
+    public Order getOrder(int order_id){ return dao.getOrder(order_id);}
+
+    public List<OrderDetails> getAllOrderDetails(){ return dao.getAllOrderDetails();}
+    public List<OrderDetails> getOrderDetailsByOrderId(int order_id){ return dao.getOrderDetailsByOrderId(order_id);}
 
 }
