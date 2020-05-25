@@ -1,8 +1,6 @@
 package com.example.northwind.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonSubTypes;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -25,6 +23,7 @@ public class Product implements Serializable {
     private double UnitPrice;
     private int UnitInStock;
     private int UnitsOnOrder;
+    private boolean discontinued = false;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "CATEGORY_ID", referencedColumnName ="id", nullable = false)
     private Category ProductCategory;
@@ -113,4 +112,8 @@ public class Product implements Serializable {
     public void setOrderDetails(List<OrderDetails> orderDetailsList){
         this.details = new HashSet<>(orderDetailsList);
     }
+
+    public boolean isDiscontinued() { return discontinued; }
+
+    public void setDiscontinued(boolean discontinued) { this.discontinued = discontinued; }
 }

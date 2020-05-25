@@ -2,14 +2,10 @@ package com.example.northwind.api;
 
 import com.example.northwind.model.*;
 import com.example.northwind.service.NorthwindDataService;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
-// this is where we define the actual API endpoints, which clients can access via HTTP requests
 
 @RequestMapping("api")
 @org.springframework.web.bind.annotation.RestController
@@ -33,35 +29,29 @@ public class RestController {
     }
 
     @GetMapping("/product")
-    public List<Product> getAllProducts() {
-        return dataService.getAllProducts();
-    }
+    public List<Product> getAllProducts() { return dataService.getAllProducts(); }
 
     @GetMapping("/product/{product_id}")
-    public Product getProductById(@PathVariable int product_id){ return dataService.getProductById(product_id);}
+    public Product getProductById(@PathVariable int product_id) { return dataService.getProductById(product_id);}
 
     @DeleteMapping("/product/{product_id}")
-    public void deleteProductById(@PathVariable int product_id){ dataService.deleteProductById(product_id);}
+    public void deleteProductById(@PathVariable int product_id) { dataService.deleteProductById(product_id); }
+
 
     // ==========  CATEGORY  ========== //
 
     @PostMapping("/category")
-    public void addCategory(@RequestBody Category c){
-        dataService.addCategory(c);
-    }
+    public void addCategory(@RequestBody Category c) { dataService.addCategory(c); }
 
     @GetMapping("/category")
-    public List<Category> getAllCategories(){
-        return dataService.getAllCategories();
-    }
+    public List<Category> getAllCategories() { return dataService.getAllCategories(); }
 
     @GetMapping("/category/{category_id}")
-    public Category getCategoryByID(@PathVariable int category_id) {
-        return dataService.getCategoryByID(category_id);
-    }
+    public Category getCategoryByID(@PathVariable int category_id) { return dataService.getCategoryByID(category_id); }
 
     @DeleteMapping("/category/{category_id}")
     public void deleteCategoryById(@PathVariable int category_id) { dataService.deleteCategoryById(category_id);}
+
 
     // ==========  CUSTOMER  ========== //
 
@@ -72,7 +62,8 @@ public class RestController {
     public List<Customer> getAllCustomers() { return dataService.getAllCustomers(); }
 
     @GetMapping("/customer/{customer_id}")
-    public Customer getCustomerById(@PathVariable int customer_id){ return dataService.getCustomerById(customer_id); }
+    public Customer getCustomerById(@PathVariable int customer_id) { return dataService.getCustomerById(customer_id); }
+
 
     // ==========  SHIPPER  ========== //
 
@@ -80,12 +71,11 @@ public class RestController {
     public void addShipper(@RequestBody Shipper s) { dataService.addShipper(s); }
 
     @GetMapping("/shipper")
-    public List<Shipper> getAllShippers(){
-        return dataService.getAllShippers();
-    }
+    public List<Shipper> getAllShippers() { return dataService.getAllShippers(); }
 
     @GetMapping("/shipper/{shipper_id}")
     public Shipper getShipperById(@PathVariable int shipper_id) { return dataService.getShipperById(shipper_id);}
+
 
     // ==========  ORDER  ========== //
 
@@ -116,23 +106,31 @@ public class RestController {
     }
 
     @GetMapping("/order")
-    public List<Order> getAllOrders(){ return dataService.getAllOrders();}
+    public List<Order> getAllOrders() { return dataService.getAllOrders();}
 
     @GetMapping("/order/{order_id}")
-    public Order getOrder(@PathVariable int order_id) {
-        return dataService.getOrder(order_id);
+    public Order getOrder(@PathVariable int order_id) { return dataService.getOrder(order_id); }
+
+    @PostMapping("/order/{order_id}/cancel")
+    public void cancelOrder(@PathVariable int order_id) {
+        dataService.cancelOrder(order_id);
     }
+
 
     // ==========  ORDER DETAILS  ========== //
 
     @GetMapping("/orderDetails")
-    public List<OrderDetails> getAllOrderDetails(){ return dataService.getAllOrderDetails(); }
+    public List<OrderDetails> getAllOrderDetails() { return dataService.getAllOrderDetails(); }
 
     @GetMapping("/orderDetails/{order_id}")
-    public List<OrderDetails> getOrderDetailsByOrderId(@PathVariable int order_id){ return dataService.getOrderDetailsByOrderId(order_id);}
+    public List<OrderDetails> getOrderDetailsByOrderId(@PathVariable int order_id) {
+        return dataService.getOrderDetailsByOrderId(order_id);
+    }
 
     @PostMapping("/orderDetails/{order_id}/{product_id}")
-    public void addOrderDetailToOrder(@PathVariable int order_id,@PathVariable int product_id, @RequestBody OrderDetails orderDetails){
+    public void addOrderDetailToOrder(@PathVariable int order_id,
+                                      @PathVariable int product_id,
+                                      @RequestBody OrderDetails orderDetails) {
         Product p = dataService.getProductById(product_id);
         Order o = dataService.getOrder(order_id);
         orderDetails.setOrder(o);
@@ -141,6 +139,4 @@ public class RestController {
         orderDetails.setId(new OrderDetail_ID(o.getId(), p.getId()));
         dataService.addOrderDetails(orderDetails);
     }
-
-
 }

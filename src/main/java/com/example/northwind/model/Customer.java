@@ -26,7 +26,7 @@ public class Customer implements Serializable {
     @OneToMany(mappedBy = "customerOrder",cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     Set<Order> Orders;
 
-    public Customer() { this.Orders = new HashSet<Order>();}
+    public Customer() { this.Orders = new HashSet<Order>(); }
     public Customer(@JsonProperty("name")String customerName,
                     @JsonProperty("address") String address,
                     @JsonProperty("city") String city,

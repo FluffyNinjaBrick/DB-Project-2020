@@ -22,6 +22,7 @@ public class Order implements Serializable {
     private LocalDateTime RequiredDate;
     private LocalDateTime ShippedDate;
     private double Freight;
+    private boolean cancelled = false;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "CUSTOMER_ID", referencedColumnName ="id", nullable = false)
@@ -35,7 +36,6 @@ public class Order implements Serializable {
     private Set<OrderDetails> details;
 
     public Order() { this.details = new HashSet<>(); }
-
     public Order(@JsonProperty("orderDate") String orderDate,
                  @JsonProperty("requiredDate")String requiredDate,
                  @JsonProperty("freight") double freight) {
@@ -106,4 +106,7 @@ public class Order implements Serializable {
 
     public int getShipper() { return this.shipperOrder.getId(); }
 
+    public boolean isCancelled() { return cancelled; }
+
+    public void setCancelled(boolean cancelled) { this.cancelled = cancelled; }
 }

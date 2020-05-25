@@ -1,10 +1,7 @@
 package com.example.northwind.dao;
 
-// simple interface declaring what a data access object should be able to do
-
 import com.example.northwind.model.*;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 public interface NorthwindDao {
@@ -39,6 +36,7 @@ public interface NorthwindDao {
     int addOrderDetails(OrderDetails d);
     List<Order> getAllOrders();
     Order getOrder(int id);
+    int cancelOrder(int order_id);
 
     // ======  ORDER DETAILS  ====== //
     List<OrderDetails> getAllOrderDetails();

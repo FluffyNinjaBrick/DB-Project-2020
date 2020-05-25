@@ -1,14 +1,10 @@
 package com.example.northwind.dao;
 
 import com.example.northwind.model.*;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.mysql.cj.Session;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 // this is where the most will need to be done. This is where we'll be implementing add the DB access methods
@@ -44,9 +40,9 @@ public class HibernateAccess implements NorthwindDao {
     @Override
     @Transactional
     public void deleteProductById(int product_id) {
-        Product prod = em.find(Product.class,product_id);
+        Product prod = em.find(Product.class, product_id);
         int category_id = prod.getCategory();
-        Category cat = em.find(Category.class,category_id);
+        Category cat = em.find(Category.class, category_id);
         cat.removeProduct(prod);
         em.remove(prod);
     }
@@ -101,6 +97,7 @@ public class HibernateAccess implements NorthwindDao {
     }
 
 
+
     // ==========  SHIPPER  ========== //
 
     @Override
@@ -133,8 +130,6 @@ public class HibernateAccess implements NorthwindDao {
         return 0;
     }
 
-
-
     @Override
     @Transactional
     public List<Order> getAllOrders() {
@@ -146,6 +141,20 @@ public class HibernateAccess implements NorthwindDao {
     public Order getOrder(int order_id){
         return em.find(Order.class, order_id);
     }
+
+    @Override
+    @Transactional
+    public int cancelOrder(int order_id) {
+        em.find(Order.class, order_id).setCancelled(true);
+        List<OrderDetails> details = getOrderDetailsByOrderId(order_id);
+        for (OrderDetails od: details) {
+            Product p = em.find(Product.class, od.getProduct());
+            p.setUnitInStock(p.getUnitInStock() + od.getQuantity());
+            em.remove(od);
+        }
+        return 0;
+    }
+
 
     // ======  ORDER DETAILS  ====== //
     @Override
@@ -164,8 +173,10 @@ public class HibernateAccess implements NorthwindDao {
     @Transactional
     public int addOrderDetails(OrderDetails d) {
         em.persist(d);
+        Product p = em.find(Product.class, d.getProduct());
+        p.setUnitsOnOrder(p.getUnitsOnOrder() + d.getQuantity());
+        p.setUnitInStock(p.getUnitInStock() - d.getQuantity());
         return 0;
     }
-
 
 }
