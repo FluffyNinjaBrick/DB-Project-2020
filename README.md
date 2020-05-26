@@ -6,9 +6,11 @@ Structure
 -----------
 The code consists of a data model, Rest controller class, a data service, a database access class and an interface for it.
 
-All of these are found in src/main/com/example/northwind. The data model is found in /model and contains all the
-entity classes, as well as some helper classes needed along the way. The controller sits in /api, the data service is
-in /service, and the database access class and its interface are both in /dao.
+All of these are found in src/main/com/example/northwind:
+* the data model is found in /model and contains all the entity classes, as well as some helper classes needed along the way
+* The controller sits in /api
+* the data service is in /service
+* the database access class and its interface are both in /dao.
 
 **The model**  
 Nothing fancy, just a limited implementation of Northwind's structure. Of the interesting stuff, there's an OrderWrapper class
