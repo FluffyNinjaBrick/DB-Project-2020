@@ -8,7 +8,7 @@ The code consists of a data model, Rest controller class, a data service, a data
 
 All of these are found in src/main/com/example/northwind:
 * the data model is found in /model and contains all the entity classes, as well as some helper classes needed along the way
-* The controller sits in /api
+* the controller sits in /api
 * the data service is in /service
 * the database access class and its interface are both in /dao.
 
