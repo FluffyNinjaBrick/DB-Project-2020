@@ -81,28 +81,29 @@ public class RestController {
 
     @PostMapping("/order")
     public void addOrder(@RequestBody OrderWrapper wrapper) {
-        // persist the order so that it gains an ID
-        Order o = wrapper.getOrder();
-        o.setCustomer(dataService.getCustomerById(wrapper.getCustomerID()));
-        o.setShipper(dataService.getShipperById(wrapper.getShipperID()));
-        dataService.addOrder(o);
-
-        // add the missing data to the products
-        List<Integer> products = wrapper.getProducts();
-        List<OrderDetails> details = wrapper.getDetails();
-        Product curr_product;
-        OrderDetails curr_details;
-        for (int i = 0; i < products.size(); i++) {
-            curr_product = dataService.getProductById(products.get(i));
-            curr_details = details.get(i);
-            curr_details.setProduct(curr_product);
-            curr_details.setUnitPrice(curr_product.getUnitPrice());
-            curr_details.setOrder(o);
-            curr_details.setId(new OrderDetail_ID(o.getId(), curr_product.getId()));
-        }
-
-        // persist all the order details
-        for(OrderDetails d: details) dataService.addOrderDetails(d);
+        dataService.addOrder(wrapper);
+//        // persist the order so that it gains an ID
+//        Order o = wrapper.getOrder();
+//        o.setCustomer(dataService.getCustomerById(wrapper.getCustomerID()));
+//        o.setShipper(dataService.getShipperById(wrapper.getShipperID()));
+//        dataService.addOrder(o);
+//
+//        // add the missing data to the products
+//        List<Integer> products = wrapper.getProducts();
+//        List<OrderDetails> details = wrapper.getDetails();
+//        Product curr_product;
+//        OrderDetails curr_details;
+//        for (int i = 0; i < products.size(); i++) {
+//            curr_product = dataService.getProductById(products.get(i));
+//            curr_details = details.get(i);
+//            curr_details.setProduct(curr_product);
+//            curr_details.setUnitPrice(curr_product.getUnitPrice());
+//            curr_details.setOrder(o);
+//            curr_details.setId(new OrderDetail_ID(o.getId(), curr_product.getId()));
+//        }
+//
+//        // persist all the order details
+//        for(OrderDetails d: details) dataService.addOrderDetails(d);
     }
 
     @GetMapping("/order")

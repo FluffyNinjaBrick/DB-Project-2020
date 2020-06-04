@@ -58,7 +58,7 @@ public class NorthwindDataService {
 
     // ==========  ORDER  ========== //
 
-    public int addOrder(Order o) { return dao.addOrder(o); }
+    public int addOrder(OrderWrapper wrapper) { return dao.addOrder(wrapper); }
     public int addOrderDetails(OrderDetails d) { return dao.addOrderDetails(d); }
     public List<Order> getAllOrders() { return dao.getAllOrders(); }
     public Order getOrder(int order_id) { return dao.getOrder(order_id); }

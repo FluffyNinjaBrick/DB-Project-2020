@@ -2,6 +2,14 @@
 An implementation of a fragment of the Northwind database, covering products and their categories, suppliers,
 customers and orders. Done entirely with Spring, using Hibernate and a MySql database.
 
+**Database Schema**  
+The database schema was generated automatically by DataGrip.
+![DB_SCHEMA](DatabaseSchema.JPG)
+
+Access to Database
+-----------
+Database connection attributes are defined in /src/main/resources/application.properties file. 
+
 Structure
 -----------
 The code consists of a data model, Rest controller class, a data service, a database access class and an interface for it.
@@ -28,3 +36,4 @@ implementation, but its good to have to keep the code easily expandible.
 **The DAO**  
 The interface defines a set of methods needed to operate on the database, These methods are then implemented in an implementable
 class. This class is where the real magic happens, this is where we actually work upon the database.
+
