@@ -32,7 +32,7 @@ public interface NorthwindDao {
 
 
     // ==========  ORDER  ========== //
-    int addOrder(Order o);
+    int addOrder(OrderWrapper o);
     int addOrderDetails(OrderDetails d);
     List<Order> getAllOrders();
     Order getOrder(int id);
