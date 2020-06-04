@@ -1,6 +1,9 @@
 # DB-Project-2020
 An implementation of a fragment of the Northwind database, covering products and their categories, suppliers,
 customers and orders. Done entirely with Spring, using Hibernate and a MySql database.
+### Contributors:
+* Jerzy Jędrzejaszek
+* Izabela Czajowska
 
 **Database Schema**  
 The database schema was generated automatically by DataGrip.
