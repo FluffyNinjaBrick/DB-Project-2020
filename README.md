@@ -11,7 +11,7 @@ The database schema, generated automatically by DataGrip.
 
 Access to Database
 -----------
-Database connection attributes are defined in /src/main/resources/application.properties file. 
+Database connection attributes are defined in the /src/main/resources/application.properties file. Please note that for the host's discretion the authentication credentials have been omitted. Go get your own :)
 
 Structure
 -----------
