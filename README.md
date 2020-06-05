@@ -6,7 +6,7 @@ customers and orders. Done entirely with Spring, using Hibernate and a MySql dat
 * Izabela Czajowska
 
 **Database Schema**  
-The database schema was generated automatically by DataGrip.
+The database schema, generated automatically by DataGrip.
 ![DB_SCHEMA](DatabaseSchema.JPG)
 
 Access to Database
