@@ -29,7 +29,21 @@ which enables us to send an entire order in a single request, which helps avoid 
 compound ID.
 
 **The API**  
-The layer of user access. This receives requests, which are mapped to certain functions.
+The layer of user access. This receives requests, which are mapped to handler functions. For testing purposes, we suggest Postman. A premade set of queries can be found here:
+https://www.postman.com/collections/4c02334788c5f85de550?fbclid=IwAR0A6KJ_4wYTKsZZf-3-AdB_-5Cq3vJdpuSL4G9YC-44UkLxmdR0BdYgEzg
+To run down the requests real quick:
+
+Categories are queried via a GET to /api/category and added via a POST to the same address. The POST's body contains a "name" and a "desc"ription. Categories are deleted via a DELETE to /api/categories/{category_id}
+
+Products are queried in bulk via a GET to /api/product and in singular via a GET to /api/product/{product_id}. Products are added via a POST to /api/product/{category_id}, with the POST's body containing a "name", the "quantityPerUnit", a "unitPrice", "unitsInStock" and "unitsOnOrder". Products are deleted via a DELETE to /api/product/{product_id}.
+
+Shippers are queried via a GET to /api/shipper and added via a POST to the same address. The POST's body contains a "name" and a "phone" number.
+
+Customers are queried via a GET to /api/customer and added via a POST to the same address. The POST's body contains a "name", "address" consisting of street and house number, "city", "postalCode", "country" and "phone" number.
+
+Orders are queried via a GET to /api/order and added via a POST to the same address. This is the tricky one. The POST's body contains an "orderDate" and "requiredDate", the "freight", the "customer"'s ID and the "shipper"'s ID. It also contains "products", a list of product ID's, as well as "details", a list of objects containing the "quantity" and "discount" for a product. The entries at the same index of "products" and "details" correspond to each other, together describing the purchase of a single product within an order. Orders can be deleted via a POST to /api/order/{order_id}/cancel. This POST's body is irrelevant.
+
+Order details for a given order are queried via a GET to /api/orderDetails/{order_id}. Order details can be added to a specified order via a POST to /api/orderDetails/{order_id}/{product_id}, with the POST's body containing the "unitPrice", "quantity" and "discount" for the product.
 
 **The Service**  
 The data service acts as an intermediary between the API and the DAO, its sole purpose being to allow us to easily switch between
