@@ -29,7 +29,7 @@ which enables us to send an entire order in a single request, which helps avoid 
 compound ID.
 
 ## The API  
-The layer of user access. This receives requests, which are mapped to handler functions. For testing purposes, we suggest Postman. A premade set of queries can be found here:  
+The layer of user access. This receives requests, which are mapped to handler functions. For testing purposes, we suggest Postman. A premade set of requests can be found here:  
 https://www.postman.com/collections/4c02334788c5f85de550?fbclid=IwAR0A6KJ_4wYTKsZZf-3-AdB_-5Cq3vJdpuSL4G9YC-44UkLxmdR0BdYgEzg  
   
 To run down the requests real quick:
