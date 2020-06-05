@@ -53,5 +53,5 @@ implementation, but its good to have to keep the code easily expandible.
 
 ## The DAO  
 The interface defines a set of methods needed to operate on the database, These methods are then implemented in an implementable
-class. This class is where the real magic happens, this is where we actually work upon the database.
+class. This class is where the real magic happens, this is where we actually work upon the database. The methods accessing the database are @Transactional, meaning that if anything goes wrong no changes are ultimately made to the database.
 
